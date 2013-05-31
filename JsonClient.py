@@ -5,10 +5,10 @@ import httplib
 import json
 import urllib
 import pprint
-import KeyStoneToken
+from KeyStoneToken import *
 
 # Get the token from keystone via API
-Token = KeyStoneToken.KeyStoneToken()
+Token = KeyStoneToken()
 Token.GetToken()
 apitoken = Token.value
 print "Your token is: %s" % apitoken
@@ -37,5 +37,7 @@ print "------------------------"
 for i in ddQuantum['networks']:
     print "record: ", i
 
+
+
 print "*************************"
-pprint.pprint(ddQuantum)
+print json.dumps(ddQuantum, indent=2)
