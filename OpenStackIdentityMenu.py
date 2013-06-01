@@ -7,22 +7,16 @@
 
 from Tkinter import *
 from KeyStoneToken import *
+from OpenStackDisplayMisc import *
 
-# define stub func
-def callback4():
-    print "Identity is comming soon..."
-
-# define func() to obtain Token and display
+# Obtain Token and display
 def OpenStackIdentityGetToken():
-    Token = KeyStoneToken()
-    Token.GetToken()
-    apitoken = Token.value
-    print "Your token is: %s" % apitoken
-    MyWindow = Toplevel()
-    MyWindow.title("congratulations!")
-    w = Label(MyWindow, text="Your Token is: "+apitoken)
-    w.pack()
-    MyWindow.mainloop()
+    # Get the Token
+    MyToken = KeyStoneToken()
+    Token = MyToken.GetToken()
+
+    # Dispaly the Token
+    OpenStackDisplayMiscTopLevelMessage("Your Token is:\n "+Token)
 
 class OpenStackIdentityMenu(Menu):
     def __init__(self, parent):
@@ -30,4 +24,4 @@ class OpenStackIdentityMenu(Menu):
 
         # Create the Identity Menu
         self.add_command(label="Token", command=OpenStackIdentityGetToken)
-        self.add_command(label="Tenant", command=callback4)
+        self.add_command(label="Tenant", command=OpenStackDisplayMiscTopLevelMessage)

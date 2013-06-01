@@ -1,23 +1,74 @@
 # Author: Hongbo Tian / tianhongbo1@gmail.com
-# Date: May 30, 2013
+# Created: May 30, 2013
+# Updated: May 31, 2013
+# Code version: 0.0.1
 # Python version: 2.7.5
 # Purpose: Demo show the function list of OpenStack API
 # Function:
-#     1. Network
+#     1. Network Menu
 
 from Tkinter import *
+from OpenStackDisplayMisc import *
+from OpenStackNetworkAPI import *
+from KeyStoneToken import *
 
-# define stub func
-def callback2():
-    print "Network is coming soon..."
+def OpenStackNetworkListNetworks():
+    # Obtain the Token from KeyStone
+    TempToken = KeyStoneToken()
+    Token = TempToken.GetToken()
+    
+    # Get the all the Networks via Open Stack Network API v2.0
+    NetworksList = OpenStackNetworkApiGet(Token)
+
+    # Format the Data to More Human readable
+    # SourceStr = json.dumps(NetworksList, sort_keys=True, indent=2)
+    SourceData = NetworksList["networks"]
+    TargetStr = ''
+    y = 0
+    for x in SourceData:
+        y = y + 1
+        TargetStr = TargetStr + json.dumps(x, indent=2)
+        TargetStr = TargetStr + "\n" + "-"*100 + "\n"
+                
+    Str = "There are totally " + str(y) + " networks configurated:\n"
+    Str = Str + "-"*100
+    Str = Str + "\n"
+    Str = Str + TargetStr
+    
+    # Display the data
+    OpenStackDisplayMiscTopLevelMessage(Str)
 
 class OpenStackNetworkMenu(Menu):
     def __init__(self, parent):
         Menu.__init__(self, parent)
 
         # Create the Network Menu
-        self.add_command(label="Network", command=callback2)
-        self.add_command(label="Subnet", command=callback2)
-        self.add_command(label="Port", command=callback2)
-        self.add_command(label="Extension", command=callback2)
+        self.add_command(label="List Networks", command=OpenStackNetworkListNetworks)
+        self.add_command(label="Show Networks", command=OpenStackDisplayMiscTopLevelMessage)
+        self.add_command(label="Create Networks", command=OpenStackDisplayMiscTopLevelMessage)
+        self.add_command(label="Update Networks", command=OpenStackDisplayMiscTopLevelMessage)
+        self.add_command(label="Delete Networks", command=OpenStackDisplayMiscTopLevelMessage)
+        self.add_separator()
+        self.add_command(label="List Subnets", command=OpenStackDisplayMiscTopLevelMessage)
+        self.add_command(label="Show Subnets", command=OpenStackDisplayMiscTopLevelMessage)
+        self.add_command(label="Create Subnets", command=OpenStackDisplayMiscTopLevelMessage)
+        self.add_command(label="Update Subnets", command=OpenStackDisplayMiscTopLevelMessage)
+        self.add_command(label="Delete Subnets", command=OpenStackDisplayMiscTopLevelMessage)
+        self.add_separator()
+        self.add_command(label="List Ports", command=OpenStackDisplayMiscTopLevelMessage)
+        self.add_command(label="Show Ports", command=OpenStackDisplayMiscTopLevelMessage)
+        self.add_command(label="Create Ports", command=OpenStackDisplayMiscTopLevelMessage)
+        self.add_command(label="Update Ports", command=OpenStackDisplayMiscTopLevelMessage)
+        self.add_command(label="Delete ports", command=OpenStackDisplayMiscTopLevelMessage)
+        self.add_separator()
+        self.add_command(label="List Extension", command=OpenStackDisplayMiscTopLevelMessage)
+        self.add_command(label="Provider Network Extension", command=OpenStackDisplayMiscTopLevelMessage)
+        self.add_command(label="Layer-3 Network Extension", command=OpenStackDisplayMiscTopLevelMessage)
+        self.add_command(label="ExtraRoute Extension", command=OpenStackDisplayMiscTopLevelMessage)
+        self.add_command(label="Load Balancer Extension", command=OpenStackDisplayMiscTopLevelMessage)
+        self.add_command(label="Security Group and Rule", command=OpenStackDisplayMiscTopLevelMessage)
+        self.add_command(label="Agent Management Extension", command=OpenStackDisplayMiscTopLevelMessage)
+        self.add_command(label="Agent Scheduller Extension", command=OpenStackDisplayMiscTopLevelMessage)
+        
+        
 

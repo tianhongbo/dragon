@@ -6,18 +6,15 @@
 #     1. Compute
 
 from Tkinter import *
-
-# define stub func
-def callback1():
-    print "Compute is comming soon..."
+from OpenStackDisplayMisc import *
 
 class OpenStackComputeMenu(Menu):
     def __init__(self, parent):
         Menu.__init__(self, parent)
 
         # Create the Compute Menu
-        self.add_command(label="Server", command=callback1)
-        self.add_command(label="Image", command=callback1)
-        self.add_command(label="Flavor", command=callback1)
-        self.add_command(label="Extension", command=callback1)
-        self.add_command(label="Misc", command=callback1)
+        self.add_command(label="Server", command=OpenStackDisplayMiscTopLevelMessage)
+        self.add_command(label="Image", command=OpenStackDisplayMiscTopLevelMessage)
+        self.add_command(label="Flavor", command=OpenStackDisplayMiscTopLevelMessage)
+        self.add_command(label="Extension", command=OpenStackDisplayMiscTopLevelMessage)
+        self.add_command(label="Misc", command=OpenStackDisplayMiscTopLevelMessage)

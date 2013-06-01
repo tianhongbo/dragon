@@ -16,21 +16,24 @@ import urllib
 class KeyStoneToken:
 
     # Token value, initiled with none
-    value = ''
+    Token = ''
+    HttpUrl = ''
+    HttpParams = ''
+    HttpHeaders = ''
 
     def __init__(self):
         # All the arguments for user - Admin
         # If you want to change to another user, please modify the self.params
-        self.url = "10.145.90.128:5000"
-        self.params = '{"auth":{"passwordCredentials":{"username":"admin", "password":"password"},"tenantId":"f540d68440e146ed83537bb88002af16"}}'
-        self.headers = {"Content-Type": "application/json"}
+        self.HttpUrl = "10.145.90.128:5000"
+        self.HttpParams = '{"auth":{"passwordCredentials":{"username":"admin", "password":"password"},"tenantId":"f540d68440e146ed83537bb88002af16"}}'
+        self.HttpHeaders = {"Content-Type": "application/json"}
         
     # Method to obtain the token from KeyStone
     def GetToken(self):
         
         # HTTP connetion
-        conn = httplib.HTTPConnection(self.url)
-        conn.request("POST", "/v2.0/tokens", self.params, self.headers)
+        conn = httplib.HTTPConnection(self.HttpUrl)
+        conn.request("POST", "/v2.0/tokens", self.HttpParams, self.HttpHeaders)
         
         # HTTP response
         response = conn.getresponse()
@@ -42,3 +45,4 @@ class KeyStoneToken:
         
         # Display the token
         self.value = dd['access']['token']['id']
+        return self.value
