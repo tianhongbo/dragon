@@ -10,11 +10,12 @@
 #     5. Exit
 
 from Tkinter import *
+from OpenStackOverviewMenu import *
 from OpenStackComputeMenu import *
 from OpenStackNetworkMenu import *
 from OpenStackStorageMenu import *
 from OpenStackIdentityMenu import *
-
+from OpenStackUseCaseMenu import *
 
 # define stub func
 def callback():
@@ -23,6 +24,10 @@ def callback():
 class OpenStackMenu(Menu):
     def __init__(self, parent):
         Menu.__init__(self, parent)
+
+        # Create the Overview Menu
+        OverviewMenu = OpenStackOverviewMenu(self)
+        self.add_cascade(label="Overview", menu=OverviewMenu)
 
         # Create the Compute Menu
         ComputeMenu = OpenStackComputeMenu(self)
@@ -39,6 +44,10 @@ class OpenStackMenu(Menu):
         # Create the Identity Menu
         IdentityMenu = OpenStackIdentityMenu(self)
         self.add_cascade(label="Identity", menu=IdentityMenu)
+
+        # Create the Use Case Menu
+        UseCaseMenu = OpenStackUseCaseMenu(self)
+        self.add_cascade(label="UseCase", menu=UseCaseMenu)
 
         # Create the Exit Menu
         ExitMenu = Menu(self)

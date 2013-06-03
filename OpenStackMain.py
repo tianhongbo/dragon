@@ -17,6 +17,13 @@ class OpenStackApiMain(Tk):
         self.minsize(1056,600)
         #self.geometry("1000x500")
         self.config(menu=TopMenu)
+
+        # create the mLAB picture as the main windows background
+        canvas = Canvas(self, width = 300, height = 200)
+        photo = PhotoImage(file="mlab.gif")
+        item = canvas.create_image(0, 0, anchor=NW, image=photo)
+        canvas.pack(expand = YES, fill = BOTH)
+        canvas.mainloop()
         
 # Main()
 if __name__ == "__main__":
