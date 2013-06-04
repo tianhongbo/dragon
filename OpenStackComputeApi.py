@@ -1,62 +1,63 @@
 # Author: Hongbo Tian / tianhongbo1@gmail.com
-# Created Date: June 4, 2013
-# Updated Date: June 4, 2013
-# Version: 0.0.2
+# Created: June 4, 2013
+# Updated: June 4, 2013
+# Code version: 0.0.1
 # Python version: 2.7.5
-# Purpose: It is the collection of all Identity API
+# Purpose: It is the collection of all OpenStack Compute API V2.0
 # Function:
-#     1. Identity
+#     1. Compute API v2.0
 
-from Tkinter import *
-from KeyStoneToken import *
 from OpenStackDisplayMisc import *
 from OpenStackApiUtil import *
+from KeyStoneToken import *
 
-# Obtain Token and display
-def OpenStackIdentityApiGetToken():
-    myHost = "10.145.90.128:5000"
-    myHeaders = {"Content-Type": "application/json"}
-    myMethod = "POST"
-    myUri = "/v2.0/tokens"
-    myParams = '{"auth":{"passwordCredentials":{"username":"admin", "password":"password"},"tenantId":"f540d68440e146ed83537bb88002af16"}}'
-
-    dd = OpenStackApiUtilReqDataJson(myHost, myHeaders, myMethod, myUri, myParams)
-
-    # Display the token
-    value = dd["access"]["token"]["id"]
-    OpenStackDisplayMiscTopLevelMessage(value)
-    
-def OpenStackIdentityApiListTenants():
+def OpenStackNetworkListServers():
     # Obtain the Token from KeyStone
     TempToken = KeyStoneToken()
     Token = TempToken.GetToken()
     
-    myHost = "10.145.90.128:5000"
+    myHost = "10.145.90.128:8774"
     myHeaders = Headers= {"X-Auth-Token": Token, "Content-Type": "application/json"}
     myMethod = "GET"
-    myUri = "/v2.0/tenants"
+    myUri = "/v2/f540d68440e146ed83537bb88002af16/servers/detail"
     myParams = None
 
     dd = OpenStackApiUtilReqDataJson(myHost, myHeaders, myMethod, myUri, myParams)
 
     # Display the token
-    value = dd["tenants"]
+    value = dd["servers"]
     OpenStackDispJson(value)
-    
 
-def OpenStackIdentityApiListUsers():
+def OpenStackNetworkListImages():
     # Obtain the Token from KeyStone
     TempToken = KeyStoneToken()
     Token = TempToken.GetToken()
     
-    myHost = "10.145.90.128:35357"
+    myHost = "10.145.90.128:8774"
     myHeaders = Headers= {"X-Auth-Token": Token, "Content-Type": "application/json"}
     myMethod = "GET"
-    myUri = "/v2.0/users"
+    myUri = "/v2/f540d68440e146ed83537bb88002af16/images/detail"
     myParams = None
 
     dd = OpenStackApiUtilReqDataJson(myHost, myHeaders, myMethod, myUri, myParams)
 
     # Display the token
-    value = dd["users"]
+    value = dd["images"]
+    OpenStackDispJson(value)
+
+def OpenStackNetworkListFlavors():
+    # Obtain the Token from KeyStone
+    TempToken = KeyStoneToken()
+    Token = TempToken.GetToken()
+    
+    myHost = "10.145.90.128:8774"
+    myHeaders = Headers= {"X-Auth-Token": Token, "Content-Type": "application/json"}
+    myMethod = "GET"
+    myUri = "/v2/f540d68440e146ed83537bb88002af16/flavors"
+    myParams = None
+
+    dd = OpenStackApiUtilReqDataJson(myHost, myHeaders, myMethod, myUri, myParams)
+
+    # Display the token
+    value = dd["flavors"]
     OpenStackDispJson(value)

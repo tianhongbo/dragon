@@ -26,3 +26,19 @@ def OpenStackApiUtilGet(Token, Host, Uri):
     # HTTP Close
     conn.close()
     return dd
+
+def OpenStackApiUtilReqDataJson(Host, Headers, Method, Uri, Params):
+    # Open HTTP Connection
+    conn = httplib.HTTPConnection(Host)
+    conn.request(Method, Uri, Params, Headers)
+
+    # HTTP response
+    response = conn.getresponse()
+    data = response.read()
+    dd = json.loads(data)
+
+    # HTTP Close
+    conn.close()
+
+    # return the JSON data
+    return dd

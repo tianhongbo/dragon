@@ -9,6 +9,7 @@
 #     2. Display the picture in the toplevel window
 
 from Tkinter import *
+import json
 
 # Display the message in the toplevel window
 def OpenStackDisplayMiscTopLevelMessage(MessageStr="It's comming soon! We are working on that..."):
@@ -63,7 +64,7 @@ def OpenStackDispJson(SourceData):
             # Print the Clomun 0 as the title if x == 0
             if x is 0:
                 Label(MyWindow, text=MyNetwork, borderwidth=2, relief=GROOVE).grid(row=y, column=0, sticky=W, padx=5, pady=5)
-                
+
             Label(MyWindow, text=z[MyNetwork], borderwidth=2, relief=GROOVE).grid(row=y, column=x+1, sticky=W, padx=5, pady=5)
             y = y + 1
         x = x + 1

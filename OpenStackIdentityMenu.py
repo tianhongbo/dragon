@@ -15,5 +15,19 @@ class OpenStackIdentityMenu(Menu):
         Menu.__init__(self, parent)
 
         # Create the Identity Menu
-        self.add_command(label="Token", command=OpenStackIdentityApiGetToken)
-        self.add_command(label="Tenant", command=OpenStackDisplayMiscTopLevelMessage)
+        self.add_command(label="Get Token", command=OpenStackIdentityApiGetToken)
+        self.add_command(label="Validate Token", command=OpenStackDisplayMiscTopLevelMessage)
+        self.add_command(label="Check Token", command=OpenStackDisplayMiscTopLevelMessage)
+        self.add_command(label="List Endpoints of Token", command=OpenStackDisplayMiscTopLevelMessage)
+        
+        self.add_separator()
+        self.add_command(label="List Tenants", command=OpenStackIdentityApiListTenants)
+        self.add_command(label="Add Tenants", command=OpenStackDisplayMiscTopLevelMessage)
+        self.add_command(label="Update Tenants", command=OpenStackDisplayMiscTopLevelMessage)
+        self.add_command(label="Delete Tenants", command=OpenStackDisplayMiscTopLevelMessage)
+
+        self.add_separator()
+        self.add_command(label="List Users", command=OpenStackIdentityApiListUsers)
+        self.add_command(label="Add Users", command=OpenStackDisplayMiscTopLevelMessage)
+        self.add_command(label="Update Users", command=OpenStackDisplayMiscTopLevelMessage)
+        self.add_command(label="Delete Users", command=OpenStackDisplayMiscTopLevelMessage)
