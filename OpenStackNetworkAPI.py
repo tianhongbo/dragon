@@ -7,28 +7,48 @@
 # Function:
 #     1. Network API v2.0
 
-import httplib
-import json
-import urllib
-import pprint
+from OpenStackDisplayMisc import *
+from OpenStackApiUtil import *
+from KeyStoneToken import *
 
-def OpenStackNetworkApiGet(TempToken):
+def OpenStackNetworkListNetworks():
+    # Obtain the Token from KeyStone
+    TempToken = KeyStoneToken()
+    Token = TempToken.GetToken()
     
-    ## List the networks configured in Quantum by user - Admin
-    # QuantumHost = "http://10.145.90.128:9696/v2.0/api/"
-    # arguments
-    urlQuantum = "10.145.90.128:9696"
-    headersQuantum = {"X-Auth-Token": TempToken, "Content-Type": "application/json"}
+    # Get the all the Networks via Open Stack Network API v2.0
+    Host = "10.145.90.128:9696"
+    Uri = "/v2.0/networks"
+    NetworksList = OpenStackApiUtilGet(Token, Host, Uri)
+    
+    # Format the Data to More Human readable
+    SourceData = NetworksList["networks"]
+    OpenStackDispJson(SourceData)
 
-    # HTTP Connection
-    connQuantum = httplib.HTTPConnection(urlQuantum)
-    connQuantum.request("GET", "/v2.0/networks", None, headersQuantum)
-
-    # HTTP response
-    responseQuantum = connQuantum.getresponse()
-    dataQuantum = responseQuantum.read()
-    ddQuantum = json.loads(dataQuantum)
-
-    # HTTP Close
-    connQuantum.close()
-    return ddQuantum
+def OpenStackNetworkListSubnetworks():
+    # Obtain the Token from KeyStone
+    TempToken = KeyStoneToken()
+    Token = TempToken.GetToken()
+    
+    # Get the all the Sub Networks via Open Stack Network API v2.0
+    Host = "10.145.90.128:9696"
+    Uri = "/v2.0/subnets.json"
+    NetworksList = OpenStackApiUtilGet(Token, Host, Uri)
+    
+    # Format the Data to More Human readable
+    SourceData = NetworksList["subnets"]
+    OpenStackDispJson(SourceData)
+    
+def OpenStackNetworkListPorts():
+    # Obtain the Token from KeyStone
+    TempToken = KeyStoneToken()
+    Token = TempToken.GetToken()
+    
+    # Get the all the Ports via Open Stack Network API v2.0
+    Host = "10.145.90.128:9696"
+    Uri = "/v2.0/ports.json"
+    NetworksList = OpenStackApiUtilGet(Token, Host, Uri)
+    
+    # Format the Data to More Human readable
+    SourceData = NetworksList["ports"]
+    OpenStackDispJson(SourceData)

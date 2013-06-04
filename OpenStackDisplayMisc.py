@@ -62,9 +62,9 @@ def OpenStackDispJson(SourceData):
         for MyNetwork in z:
             # Print the Clomun 0 as the title if x == 0
             if x is 0:
-                Label(MyWindow, text=MyNetwork).grid(row=y, column=0, sticky=W)
+                Label(MyWindow, text=MyNetwork, borderwidth=2, relief=GROOVE).grid(row=y, column=0, sticky=W, padx=5, pady=5)
                 
-            Label(MyWindow, text=z[MyNetwork]).grid(row=y, column=x+1, sticky=W)
+            Label(MyWindow, text=z[MyNetwork], borderwidth=2, relief=GROOVE).grid(row=y, column=x+1, sticky=W, padx=5, pady=5)
             y = y + 1
         x = x + 1
 
