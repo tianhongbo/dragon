@@ -48,3 +48,26 @@ def OpenStackDisplayMiscTopLevelPictureGif(PictureFileName=""):
     MyItem = MyCanvas.create_image(0, 0, anchor=NW, image=MyPhoto)
     MyCanvas.pack(expand = YES, fill = BOTH)
     MyWindow.mainloop()
+
+def OpenStackDispJson(SourceData):
+    # Create the toplevel window
+    MyWindow = Toplevel()
+    MyWindow.title("CloudEPC")
+    MyWindow.minsize(640,360)
+
+    # Format the Data to More Human readable
+    x = 0
+    for z in SourceData:
+        y = 0
+        for MyNetwork in z:
+            # Print the Clomun 0 as the title if x == 0
+            if x is 0:
+                Label(MyWindow, text=MyNetwork).grid(row=y, column=0, sticky=W)
+                
+            Label(MyWindow, text=z[MyNetwork]).grid(row=y, column=x+1, sticky=W)
+            y = y + 1
+        x = x + 1
+
+    if x is 0:
+        Label(MyWindow, text="There is no Data")
+    MyWindow.mainloop()

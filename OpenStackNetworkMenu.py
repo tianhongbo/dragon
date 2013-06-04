@@ -21,22 +21,8 @@ def OpenStackNetworkListNetworks():
     NetworksList = OpenStackNetworkApiGet(Token)
 
     # Format the Data to More Human readable
-    # SourceStr = json.dumps(NetworksList, sort_keys=True, indent=2)
     SourceData = NetworksList["networks"]
-    TargetStr = ''
-    y = 0
-    for x in SourceData:
-        y = y + 1
-        TargetStr = TargetStr + json.dumps(x, indent=2)
-        TargetStr = TargetStr + "\n" + "-"*100 + "\n"
-                
-    Str = "There are totally " + str(y) + " networks configurated:\n"
-    Str = Str + "-"*100
-    Str = Str + "\n"
-    Str = Str + TargetStr
-    
-    # Display the data
-    OpenStackDisplayMiscTopLevelMessage(Str)
+    OpenStackDispJson(SourceData)
 
 class OpenStackNetworkMenu(Menu):
     def __init__(self, parent):
