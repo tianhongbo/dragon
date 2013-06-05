@@ -5,11 +5,13 @@
 # Python version: 2.7.5
 # Purpose: The file is the collection of OpenStack API common function
 # Function:
-#     1. Network Menu
+#     1. Common API Func
+#     2. Get API configuration from config file - "OpenStackApi.conf"
 
 import httplib
 import json
 import urllib
+
 
 def OpenStackApiUtilGet(Token, Host, Uri):
     Headers= {"X-Auth-Token": Token, "Content-Type": "application/json"}

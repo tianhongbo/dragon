@@ -11,7 +11,7 @@ from OpenStackDisplayMisc import *
 from OpenStackApiUtil import *
 from KeyStoneToken import *
 
-def OpenStackNetworkListServers():
+def OpenStackComputeListServers():
     # Obtain the Token from KeyStone
     TempToken = KeyStoneToken()
     Token = TempToken.GetToken()
@@ -28,7 +28,7 @@ def OpenStackNetworkListServers():
     value = dd["servers"]
     OpenStackDispJson(value)
 
-def OpenStackNetworkListImages():
+def OpenStackComputeListImages():
     # Obtain the Token from KeyStone
     TempToken = KeyStoneToken()
     Token = TempToken.GetToken()
@@ -45,7 +45,7 @@ def OpenStackNetworkListImages():
     value = dd["images"]
     OpenStackDispJson(value)
 
-def OpenStackNetworkListFlavors():
+def OpenStackComputeListFlavors():
     # Obtain the Token from KeyStone
     TempToken = KeyStoneToken()
     Token = TempToken.GetToken()

@@ -1,5 +1,7 @@
 # Author: Hongbo Tian / tianhongbo1@gmail.com
-# Date: May 30, 2013
+# Created Date: May 30, 2013
+# Updated Date: May 30, 2013
+# Version: 1.0.0
 # Python version: 2.7.5
 # Purpose: Demo show the function list of OpenStack API
 # Function:

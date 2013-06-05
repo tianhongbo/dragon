@@ -14,7 +14,7 @@ class OpenStackComputeMenu(Menu):
         Menu.__init__(self, parent)
 
         # Create the Compute Menu
-        self.add_command(label="List Server", command=OpenStackNetworkListServers)
+        self.add_command(label="List Server", command=OpenStackComputeListServers)
         self.add_command(label="Show Server", command=OpenStackDisplayMiscTopLevelMessage)
         self.add_command(label="Creat Server", command=OpenStackDisplayMiscTopLevelMessage)
         self.add_command(label="Update Server", command=OpenStackDisplayMiscTopLevelMessage)
@@ -25,7 +25,7 @@ class OpenStackComputeMenu(Menu):
         self.add_command(label="Update Server Metadata", command=OpenStackDisplayMiscTopLevelMessage)
         self.add_command(label="Delete Server Metadata", command=OpenStackDisplayMiscTopLevelMessage)
         self.add_separator()
-        self.add_command(label="List Image", command=OpenStackNetworkListImages)
+        self.add_command(label="List Image", command=OpenStackComputeListImages)
         self.add_command(label="Show Image", command=OpenStackDisplayMiscTopLevelMessage)
         self.add_command(label="Delete Image", command=OpenStackDisplayMiscTopLevelMessage)
         self.add_command(label="List Image Metadata", command=OpenStackDisplayMiscTopLevelMessage)
@@ -34,7 +34,7 @@ class OpenStackComputeMenu(Menu):
         self.add_command(label="Update Image Metadata", command=OpenStackDisplayMiscTopLevelMessage)
         self.add_command(label="Delete Image Metadata", command=OpenStackDisplayMiscTopLevelMessage)
         self.add_separator()
-        self.add_command(label="List Flavor", command=OpenStackNetworkListFlavors)
+        self.add_command(label="List Flavor", command=OpenStackComputeListFlavors)
         self.add_command(label="Show Flavor", command=OpenStackDisplayMiscTopLevelMessage)
         self.add_separator()
         self.add_command(label="Extension-Pause Server", command=OpenStackDisplayMiscTopLevelMessage)
