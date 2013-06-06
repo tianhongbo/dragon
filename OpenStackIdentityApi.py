@@ -14,7 +14,10 @@ from OpenStackApiUtil import *
 
 # Obtain Token and display
 def OpenStackIdentityApiGetToken():
-    myHost = "10.145.90.128:5000"
+    
+    ApiConf = OpenStackApiConf()
+    myHost = ApiConf.keystone_api_server
+
     myHeaders = {"Content-Type": "application/json"}
     myMethod = "POST"
     myUri = "/v2.0/tokens"
@@ -31,7 +34,9 @@ def OpenStackIdentityApiListTenants():
     TempToken = KeyStoneToken()
     Token = TempToken.GetToken()
     
-    myHost = "10.145.90.128:5000"
+    ApiConf = OpenStackApiConf()
+    myHost = ApiConf.keystone_api_server
+
     myHeaders = Headers= {"X-Auth-Token": Token, "Content-Type": "application/json"}
     myMethod = "GET"
     myUri = "/v2.0/tenants"
@@ -49,7 +54,8 @@ def OpenStackIdentityApiListUsers():
     TempToken = KeyStoneToken()
     Token = TempToken.GetToken()
     
-    myHost = "10.145.90.128:35357"
+    ApiConf = OpenStackApiConf()
+    myHost = ApiConf.admin_api_server
     myHeaders = Headers= {"X-Auth-Token": Token, "Content-Type": "application/json"}
     myMethod = "GET"
     myUri = "/v2.0/users"

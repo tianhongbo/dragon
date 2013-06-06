@@ -17,7 +17,9 @@ def OpenStackNetworkListNetworks():
     Token = TempToken.GetToken()
     
     # Get the all the Networks via Open Stack Network API v2.0
-    Host = "10.145.90.128:9696"
+    ApiConf = OpenStackApiConf()
+    Host = ApiConf.quantum_api_server
+
     Uri = "/v2.0/networks"
     NetworksList = OpenStackApiUtilGet(Token, Host, Uri)
     
@@ -31,7 +33,9 @@ def OpenStackNetworkListSubnetworks():
     Token = TempToken.GetToken()
     
     # Get the all the Sub Networks via Open Stack Network API v2.0
-    Host = "10.145.90.128:9696"
+    ApiConf = OpenStackApiConf()
+    Host = ApiConf.quantum_api_server
+
     Uri = "/v2.0/subnets.json"
     NetworksList = OpenStackApiUtilGet(Token, Host, Uri)
     
@@ -45,7 +49,9 @@ def OpenStackNetworkListPorts():
     Token = TempToken.GetToken()
     
     # Get the all the Ports via Open Stack Network API v2.0
-    Host = "10.145.90.128:9696"
+    ApiConf = OpenStackApiConf()
+    Host = ApiConf.quantum_api_server
+
     Uri = "/v2.0/ports.json"
     NetworksList = OpenStackApiUtilGet(Token, Host, Uri)
     

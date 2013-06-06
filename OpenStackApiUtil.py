@@ -12,6 +12,47 @@ import httplib
 import json
 import urllib
 
+# Define the OpenStack API configuration Class
+# All the configuration data will store at hard disk named as "OpenStackApi.conf"
+class OpenStackApiConf:
+    # Initial Data as the local host
+    nova_api_server = "127.0.0.1:8774"
+    quantum_api_server = "127.0.0.1:9696"
+    keystone_api_server = "127.0.0.1:5000"
+    glance_api_server = "127.0.0.1:9292"
+    admin_api_server = "127.0.0.1:35357"
+    
+    def __init__(self):
+        FileName = "OpenStackApi.conf"
+        with open(FileName, 'r') as f:
+            for line in f:
+                # Remove all the whitespaces and '\n' firstly
+                s = line.replace(' ', '')
+                s = s.replace('\n', '')
+                
+                if (s == ''):
+                    # Skip the blank lines
+                    continue
+                elif (s[0] == '#'):
+                    # Skip the comments lines
+                    continue
+                elif 'nova_api_server=' in s:
+                    self.nova_api_server = s.replace('nova_api_server=', '')
+                elif 'quantum_api_server=' in s:
+                    self.quantum_api_server = s.replace('quantum_api_server=', '')
+                elif 'keystone_api_server=' in s:
+                    self.keystone_api_server = s.replace('keystone_api_server=', '')
+                elif 'glance_api_server=' in s:
+                    self.glance_api_server = s.replace('glance_api_server=', '')
+                elif 'admin_api_server=' in s:
+                    self.admin_api_server = s.replace('admin_api_server=', '')
+                else:
+                    print "something is wrong: " + line
+
+    # Leave it for future extension
+    def Load():
+        pass
+
 
 def OpenStackApiUtilGet(Token, Host, Uri):
     Headers= {"X-Auth-Token": Token, "Content-Type": "application/json"}

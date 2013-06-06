@@ -15,11 +15,12 @@ def OpenStackComputeListServers():
     # Obtain the Token from KeyStone
     TempToken = KeyStoneToken()
     Token = TempToken.GetToken()
-    
-    myHost = "10.145.90.128:8774"
+
+    ApiConf = OpenStackApiConf()
+    myHost = ApiConf.nova_api_server
     myHeaders = Headers= {"X-Auth-Token": Token, "Content-Type": "application/json"}
     myMethod = "GET"
-    myUri = "/v2/f540d68440e146ed83537bb88002af16/servers/detail"
+    myUri = "/v2/426e5b25d70d4e9c9835fab8fcb7f686/servers/detail"
     myParams = None
 
     dd = OpenStackApiUtilReqDataJson(myHost, myHeaders, myMethod, myUri, myParams)
@@ -33,10 +34,12 @@ def OpenStackComputeListImages():
     TempToken = KeyStoneToken()
     Token = TempToken.GetToken()
     
-    myHost = "10.145.90.128:8774"
+    ApiConf = OpenStackApiConf()
+    myHost = ApiConf.nova_api_server
+
     myHeaders = Headers= {"X-Auth-Token": Token, "Content-Type": "application/json"}
     myMethod = "GET"
-    myUri = "/v2/f540d68440e146ed83537bb88002af16/images/detail"
+    myUri = "/v2/426e5b25d70d4e9c9835fab8fcb7f686/images/detail"
     myParams = None
 
     dd = OpenStackApiUtilReqDataJson(myHost, myHeaders, myMethod, myUri, myParams)
@@ -50,10 +53,12 @@ def OpenStackComputeListFlavors():
     TempToken = KeyStoneToken()
     Token = TempToken.GetToken()
     
-    myHost = "10.145.90.128:8774"
+    ApiConf = OpenStackApiConf()
+    myHost = ApiConf.nova_api_server
+
     myHeaders = Headers= {"X-Auth-Token": Token, "Content-Type": "application/json"}
     myMethod = "GET"
-    myUri = "/v2/f540d68440e146ed83537bb88002af16/flavors"
+    myUri = "/v2/426e5b25d70d4e9c9835fab8fcb7f686/flavors"
     myParams = None
 
     dd = OpenStackApiUtilReqDataJson(myHost, myHeaders, myMethod, myUri, myParams)

@@ -12,6 +12,8 @@
 import httplib
 import json
 import urllib
+from OpenStackApiUtil import *
+
 
 class KeyStoneToken:
 
@@ -24,8 +26,10 @@ class KeyStoneToken:
     def __init__(self):
         # All the arguments for user - Admin
         # If you want to change to another user, please modify the self.params
-        self.HttpUrl = "10.145.90.128:5000"
-        self.HttpParams = '{"auth":{"passwordCredentials":{"username":"admin", "password":"password"},"tenantId":"f540d68440e146ed83537bb88002af16"}}'
+        ApiConf = OpenStackApiConf()
+        self.HttpUrl = ApiConf.keystone_api_server
+        
+        self.HttpParams = '{"auth":{"passwordCredentials":{"username":"demo", "password":"password"},"tenantId":"426e5b25d70d4e9c9835fab8fcb7f686"}}'
         self.HttpHeaders = {"Content-Type": "application/json"}
         
     # Method to obtain the token from KeyStone
@@ -39,7 +43,6 @@ class KeyStoneToken:
         response = conn.getresponse()
         data = response.read()
         dd = json.loads(data)
-        
         # HTTP close
         conn.close()
         
