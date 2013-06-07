@@ -1,6 +1,6 @@
 # Author: Hongbo Tian / tianhongbo1@gmail.com
 # Created: June 3, 2013
-# Updated: June 3, 2013
+# Updated: June , 2013
 # Code version: 0.0.1
 # Python version: 2.7.5
 # Purpose: The file is the collection of OpenStack API common function
@@ -13,7 +13,7 @@ import json
 import urllib
 
 # Define the OpenStack API configuration Class
-# All the configuration data will store at hard disk named as "OpenStackApi.conf"
+# Configuration file is - "OpenStackApi.conf" with the same path as code
 class OpenStackApiConf:
     # Singleton protection
     __singleton = None
@@ -21,20 +21,36 @@ class OpenStackApiConf:
     
     def __init__(self):
         # Only do one time initialization
-        if OpenStackApiConf.__singleton:
-            print "warning...try to read configration data again..."
-            #raise OpenStackApiConf.__singleton
-        OpenStackApiConf.__singleton = self
-    
-        # Initial Data as the local host
-        self.__nova_api_server = "127.0.0.1:8774"
-        self.__quantum_api_server = "127.0.0.1:9696"
-        self.__keystone_api_server = "127.0.0.1:5000"
-        self.__glance_api_server = "127.0.0.1:9292"
-        self.__admin_api_server = "127.0.0.1:35357"
+        if OpenStackApiConf.__singleton:            
+            # Get the configuration from Class instead of file
+            self.__nova_api_server = OpenStackApiConf.__nova_api_server
+            self.__quantum_api_server = OpenStackApiConf.__quantum_api_server
+            self.__keystone_api_server = OpenStackApiConf.__keystone_api_server 
+            self.__glance_api_server = OpenStackApiConf.__glance_api_server
+            self.__admin_api_server = OpenStackApiConf.__admin_api_server
+            
+        else:
+            # This is the first time to create instance,
+            # then set the __singleton value with the first instance - self 
+            OpenStackApiConf.__singleton = self
+        
+            # Initial Data as the local host
+            self.__nova_api_server = "127.0.0.1:8774"
+            self.__quantum_api_server = "127.0.0.1:9696"
+            self.__keystone_api_server = "127.0.0.1:5000"
+            self.__glance_api_server = "127.0.0.1:9292"
+            self.__admin_api_server = "127.0.0.1:35357"
 
-        # Read configuration data from file
-        OpenStackApiConf.ReLoad(self)
+            # Read configuration data from file
+            OpenStackApiConf.ReLoad(self)
+
+            # Save the updated data in Class variable
+            OpenStackApiConf.__nova_api_server = self.__nova_api_server
+            OpenStackApiConf.__quantum_api_server = self.__quantum_api_server
+            OpenStackApiConf.__keystone_api_server = self.__keystone_api_server
+            OpenStackApiConf.__glance_api_server = self.__glance_api_server
+            OpenStackApiConf.__admin_api_server = self.__admin_api_server
+        
 
     # Define the func read configuration from file
     def ReLoad(self):
