@@ -18,7 +18,7 @@ def OpenStackNetworkListNetworks():
     
     # Get the all the Networks via Open Stack Network API v2.0
     ApiConf = OpenStackApiConf()
-    Host = ApiConf.quantum_api_server
+    Host = ApiConf.get_quantum_api_server()
 
     Uri = "/v2.0/networks"
     NetworksList = OpenStackApiUtilGet(Token, Host, Uri)
@@ -34,7 +34,7 @@ def OpenStackNetworkListSubnetworks():
     
     # Get the all the Sub Networks via Open Stack Network API v2.0
     ApiConf = OpenStackApiConf()
-    Host = ApiConf.quantum_api_server
+    Host = ApiConf.get_quantum_api_server()
 
     Uri = "/v2.0/subnets.json"
     NetworksList = OpenStackApiUtilGet(Token, Host, Uri)
@@ -50,7 +50,7 @@ def OpenStackNetworkListPorts():
     
     # Get the all the Ports via Open Stack Network API v2.0
     ApiConf = OpenStackApiConf()
-    Host = ApiConf.quantum_api_server
+    Host = ApiConf.get_quantum_api_server()
 
     Uri = "/v2.0/ports.json"
     NetworksList = OpenStackApiUtilGet(Token, Host, Uri)

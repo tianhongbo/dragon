@@ -27,7 +27,7 @@ class KeyStoneToken:
         # All the arguments for user - Admin
         # If you want to change to another user, please modify the self.params
         ApiConf = OpenStackApiConf()
-        self.HttpUrl = ApiConf.keystone_api_server
+        self.HttpUrl = ApiConf.get_keystone_api_server()
         
         self.HttpParams = '{"auth":{"passwordCredentials":{"username":"demo", "password":"password"},"tenantId":"426e5b25d70d4e9c9835fab8fcb7f686"}}'
         self.HttpHeaders = {"Content-Type": "application/json"}

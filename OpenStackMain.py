@@ -9,6 +9,7 @@
 
 from Tkinter import *
 from OpenStackMenu import *
+from OpenStackApiUtil import *
 
 # Define the OpenStack API Main
 class OpenStackApiMain(Tk):
@@ -22,5 +23,8 @@ class OpenStackApiMain(Tk):
         
 # Main()
 if __name__ == "__main__":
+    # Initial the configuration data
+    ApiConf = OpenStackApiConf()
+    
     app=OpenStackApiMain()
     app.mainloop()

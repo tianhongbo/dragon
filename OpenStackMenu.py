@@ -17,10 +17,6 @@ from OpenStackStorageMenu import *
 from OpenStackIdentityMenu import *
 from OpenStackUseCaseMenu import *
 
-# define stub func
-def callback():
-    print "It is comming soon..."
-
 class OpenStackMenu(Menu):
     def __init__(self, parent):
         Menu.__init__(self, parent)

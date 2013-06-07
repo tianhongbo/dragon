@@ -15,16 +15,30 @@ import urllib
 # Define the OpenStack API configuration Class
 # All the configuration data will store at hard disk named as "OpenStackApi.conf"
 class OpenStackApiConf:
-    # Initial Data as the local host
-    nova_api_server = "127.0.0.1:8774"
-    quantum_api_server = "127.0.0.1:9696"
-    keystone_api_server = "127.0.0.1:5000"
-    glance_api_server = "127.0.0.1:9292"
-    admin_api_server = "127.0.0.1:35357"
+    # Singleton protection
+    __singleton = None
+    __FileName = "OpenStackApi.conf"
     
     def __init__(self):
-        FileName = "OpenStackApi.conf"
-        with open(FileName, 'r') as f:
+        # Only do one time initialization
+        if OpenStackApiConf.__singleton:
+            print "warning...try to read configration data again..."
+            #raise OpenStackApiConf.__singleton
+        OpenStackApiConf.__singleton = self
+    
+        # Initial Data as the local host
+        self.__nova_api_server = "127.0.0.1:8774"
+        self.__quantum_api_server = "127.0.0.1:9696"
+        self.__keystone_api_server = "127.0.0.1:5000"
+        self.__glance_api_server = "127.0.0.1:9292"
+        self.__admin_api_server = "127.0.0.1:35357"
+
+        # Read configuration data from file
+        OpenStackApiConf.ReLoad(self)
+
+    # Define the func read configuration from file
+    def ReLoad(self):
+        with open(OpenStackApiConf.__FileName, 'r') as f:
             for line in f:
                 # Remove all the whitespaces and '\n' firstly
                 s = line.replace(' ', '')
@@ -37,22 +51,36 @@ class OpenStackApiConf:
                     # Skip the comments lines
                     continue
                 elif 'nova_api_server=' in s:
-                    self.nova_api_server = s.replace('nova_api_server=', '')
+                    self.__nova_api_server = s.replace('nova_api_server=', '')
                 elif 'quantum_api_server=' in s:
-                    self.quantum_api_server = s.replace('quantum_api_server=', '')
+                    self.__quantum_api_server = s.replace('quantum_api_server=', '')
                 elif 'keystone_api_server=' in s:
-                    self.keystone_api_server = s.replace('keystone_api_server=', '')
+                    self.__keystone_api_server = s.replace('keystone_api_server=', '')
                 elif 'glance_api_server=' in s:
-                    self.glance_api_server = s.replace('glance_api_server=', '')
+                    self.__glance_api_server = s.replace('glance_api_server=', '')
                 elif 'admin_api_server=' in s:
-                    self.admin_api_server = s.replace('admin_api_server=', '')
+                    self.__admin_api_server = s.replace('admin_api_server=', '')
                 else:
                     print "something is wrong: " + line
 
-    # Leave it for future extension
-    def Load():
-        pass
+    # Get the singleton instance
+    def get_instance():
+        return OpenStackApiConf.__singleton
 
+    def get_nova_api_server(self):
+        return self.__nova_api_server
+
+    def get_quantum_api_server(self):
+        return self.__quantum_api_server
+    
+    def get_keystone_api_server(self):
+        return self.__keystone_api_server
+
+    def get_glance_api_server(self):
+        return self.__glance_api_server
+
+    def get_admin_api_server(self):
+        return self.__admin_api_server
 
 def OpenStackApiUtilGet(Token, Host, Uri):
     Headers= {"X-Auth-Token": Token, "Content-Type": "application/json"}

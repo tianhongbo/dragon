@@ -17,7 +17,8 @@ def OpenStackComputeListServers():
     Token = TempToken.GetToken()
 
     ApiConf = OpenStackApiConf()
-    myHost = ApiConf.nova_api_server
+    myHost = ApiConf.get_nova_api_server()
+    
     myHeaders = Headers= {"X-Auth-Token": Token, "Content-Type": "application/json"}
     myMethod = "GET"
     myUri = "/v2/426e5b25d70d4e9c9835fab8fcb7f686/servers/detail"
@@ -35,7 +36,7 @@ def OpenStackComputeListImages():
     Token = TempToken.GetToken()
     
     ApiConf = OpenStackApiConf()
-    myHost = ApiConf.nova_api_server
+    myHost = ApiConf.get_nova_api_server()
 
     myHeaders = Headers= {"X-Auth-Token": Token, "Content-Type": "application/json"}
     myMethod = "GET"
@@ -54,7 +55,7 @@ def OpenStackComputeListFlavors():
     Token = TempToken.GetToken()
     
     ApiConf = OpenStackApiConf()
-    myHost = ApiConf.nova_api_server
+    myHost = ApiConf.get_nova_api_server()
 
     myHeaders = Headers= {"X-Auth-Token": Token, "Content-Type": "application/json"}
     myMethod = "GET"
