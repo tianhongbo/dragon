@@ -23,6 +23,10 @@ def OpenStackOverviewTopoView():
     MyFile = "Topology.gif"
     OpenStackDisplayMiscTopLevelPictureGif(MyFile)
 
+def OpenStackOverviewHVK():
+    MyFile = "hvk.gif"
+    OpenStackDisplayMiscTopLevelPictureGif(MyFile)
+
 class OpenStackOverviewMenu(Menu):
     def __init__(self, parent):
         Menu.__init__(self, parent)
@@ -31,4 +35,5 @@ class OpenStackOverviewMenu(Menu):
         self.add_command(label="Physical View", command=OpenStackOverviewPhyView)
         self.add_command(label="Logical View", command=OpenStackOverviewLogicalView)
         self.add_command(label="Topology View", command=OpenStackOverviewTopoView)
-        #self.add_separator()
+        self.add_separator()
+        self.add_command(label="About H.V.K", command=OpenStackOverviewHVK)

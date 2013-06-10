@@ -41,7 +41,7 @@ def OpenStackDisplayMiscTopLevelPictureGif(PictureFileName=""):
 
     # Create the toplevel window
     MyWindow = Toplevel()
-    MyWindow.title("CloudEPC")
+    MyWindow.title("CloudEPC-H.V.K")
     MyWindow.minsize(640,640)
 
     # Create the Canvas in the toplevel window
@@ -53,7 +53,7 @@ def OpenStackDisplayMiscTopLevelPictureGif(PictureFileName=""):
 def OpenStackDispJson(SourceData):
     # Create the toplevel window
     MyWindow = Toplevel()
-    MyWindow.title("CloudEPC")
+    MyWindow.title("CloudEPC-H.V.K")
     MyWindow.minsize(640,360)
 
     # Format the Data to More Human readable

@@ -16,7 +16,7 @@ class OpenStackApiMain(Tk):
     def __init__(self):
         Tk.__init__(self)
         TopMenu = OpenStackMenu(self)
-        self.title("CloudEPC")
+        self.title("CloudEPC - H.V.K")
         self.minsize(1056,600)
         #self.geometry("1000x500")
         self.config(menu=TopMenu)

@@ -1,12 +1,13 @@
 # Author: Hongbo Tian / tianhongbo1@gmail.com
 # Created: June 3, 2013
-# Updated: June , 2013
-# Code version: 0.0.1
+# Updated: June 10, 2013
+# Code version: 0.0.2
 # Python version: 2.7.5
 # Purpose: The file is the collection of OpenStack API common function
 # Function:
-#     1. Common API Func
-#     2. Get API configuration from config file - "OpenStackApi.conf"
+#     1. Read the configuration data from file
+#     2. Common API Func
+#     3. Get API configuration from config file - "OpenStackApi.conf"
 
 import httplib
 import json
@@ -15,7 +16,7 @@ import urllib
 # Define the OpenStack API configuration Class
 # Configuration file is - "OpenStackApi.conf" with the same path as code
 class OpenStackApiConf:
-    # Singleton protection
+    # Singleton protection - it is single read file from harddisk
     __singleton = None
     __FileName = "OpenStackApi.conf"
     
